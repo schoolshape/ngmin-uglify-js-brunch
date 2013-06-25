@@ -14,7 +14,8 @@
     "test": "node_modules/.bin/mocha --require test/common.js"
   },
   "dependencies": {
-    "uglify-js": "~2.3.6"
+    "uglify-js": "~2.3.6",
+    "ngmin": "~0.4.0"
   },
   "devDependencies": {
     "mocha": "1.11.0",

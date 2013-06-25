@@ -1,5 +1,6 @@
 sysPath = require 'path'
 uglify = require 'uglify-js'
+ngmin = require 'ngmin'
 
 clone = (obj) ->
   return obj if not obj? or typeof obj isnt 'object'
@@ -18,9 +19,10 @@ module.exports = class UglifyMinifier
 
   optimize: (data, path, callback) =>
     try
-      optimized = uglify.minify(data, @options)
+      ngmined = ngmin.annotate(data)
+      optimized = uglify.minify(ngmined, @options)
     catch err
-      error = "JS minify failed on #{path}: #{err}"
+      error = "Ngmin or JS minify failed on #{path}: #{err}"
     finally
       result = if optimized and @options.sourceMaps
         optimized
