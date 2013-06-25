@@ -8,7 +8,7 @@ clone = (obj) ->
   copied[key] = clone val for key, val of obj
   copied
 
-module.exports = class UglifyMinifier
+module.exports = class NgminUglifyMinifier
   brunchPlugin: yes
   type: 'javascript'
 
