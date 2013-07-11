@@ -32,7 +32,6 @@ describe('Plugin', function() {
     var expectedMap = '{"version":3,"file":".map","sources":["?"],"names":["first","window","second"],"mappings":"CAAC,WACC,GAAIA,GAAQ,CACZC,QAAOC,OAASF"}';
 
     plugin.optimize(content, '', function(error, data) {
-      console.log(data);
       expect(error).not.to.be.ok;
       expect(data.code).to.equal(expected);
       expect(data.map).to.equal(expectedMap);

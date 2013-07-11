@@ -1,12 +1,17 @@
 {
-  "name": "uglify-js-brunch",
+  "name": "ngmin-uglify-js-brunch",
   "version": "1.7.1",
-  "description": "Adds Uglify minifying support to brunch.",
-  "author": "Paul Miller (http://paulmillr.com/)",
-  "homepage": "https://github.com/brunch/uglify-js-brunch",
+  "description": "Adds Ngmin and Uglify minifying support to brunch.",
+  "author": "Andrew Heuermann <aheuermann@gmail.com>",
+  "contributors": [ 
+    {
+      "name": "Paul Miller"    
+    } 
+  ],
+  "homepage": "https://github.com/aheuermann/ngmin-uglify-js-brunch",
   "repository": {
     "type": "git",
-    "url": "git@github.com:brunch/uglify-js-brunch.git"
+    "url": "git@github.com:aheuermann/ngmin-uglify-js-brunch.git"
   },
   "main": "./lib/index",
   "scripts": {
