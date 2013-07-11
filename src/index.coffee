@@ -23,10 +23,9 @@ module.exports = class NgminUglifyMinifier
       "#{path}.map"
     else
       undefined
-
     try
       ngmined = ngmin.annotate(data)
-      optimized = uglify.minify(data, options)
+      optimized = uglify.minify(ngmined, options)
     catch err
       error = "Ngmin or JS minify failed on #{path}: #{err}"
     finally

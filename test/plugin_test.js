@@ -14,8 +14,8 @@ describe('Plugin', function() {
   });
 
   it('should compile and produce valid result', function(done) {
-    var content = '(function() {var first = 5; window.second = first;})()';
-    var expected = '!function(){var n=5;window.second=n}();';
+    var content = '(function(){angular.module("whatever").controller("MyCtrl", function ($scope, $http) {})})()';
+    var expected = '!function(){angular.module("whatever").controller("MyCtrl",["$scope","$http",function(){}])}();';
 
     plugin.optimize(content, '', function(error, data) {
       expect(error).not.to.be.ok;
@@ -29,9 +29,10 @@ describe('Plugin', function() {
 
     var content = '(function() {var first = 5; window.second = first;})()';
     var expected = '!function(){var n=5;window.second=n}();';
-    var expectedMap = '{"version":3,"file":".map","sources":["?"],"names":["first","window","second"],"mappings":"CAAA,WAAa,GAAIA,GAAQ,CAAGC,QAAOC,OAASF"}';
+    var expectedMap = '{"version":3,"file":".map","sources":["?"],"names":["first","window","second"],"mappings":"CAAC,WACC,GAAIA,GAAQ,CACZC,QAAOC,OAASF"}';
 
     plugin.optimize(content, '', function(error, data) {
+      console.log(data);
       expect(error).not.to.be.ok;
       expect(data.code).to.equal(expected);
       expect(data.map).to.equal(expectedMap);
