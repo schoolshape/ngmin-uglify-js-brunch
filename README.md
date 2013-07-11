@@ -1,18 +1,18 @@
-## uglify-js-brunch
-Adds [UglifyJS](https://github.com/mishoo/UglifyJS) support to
+## ngmin-uglify-js-brunch
+Adds [Ngmin](https://github.com/btford/ngmin) AND [UglifyJS](https://github.com/mishoo/UglifyJS) support to
 [brunch](http://brunch.io).
 
-The plugin will minify your javascript files.
+The plugin will ngmin, then minify your javascript files.
 
 ## Usage
-Install the plugin via npm with `npm install --save uglify-js-brunch`.
+Install the plugin via npm with `npm install --save ngmin-uglify-js-brunch`.
 
 Or, do manual install:
 
-* Add `"uglify-js-brunch": "x.y.z"` to `package.json` of your brunch app.
+* Add `"ngmin-uglify-js-brunch": "x.y.z"` to `package.json` of your brunch app.
   Pick a plugin version that corresponds to your minor (y) brunch version.
 * If you want to use git version of plugin, add
-`"uglify-js-brunch": "git+ssh://git@github.com:brunch/uglify-js-brunch.git"`.
+`"ngmin-uglify-js-brunch": "git+ssh://git@github.com:aheuermann/ngmin-uglify-js-brunch.git"`.
 
 To specify uglifyjs options, use `config.plugins.uglify` object, for example:
 ```coffeescript
