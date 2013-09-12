@@ -34,7 +34,6 @@ describe('Plugin', function() {
     plugin.optimize(content, 'test.js', function(error, data) {
       expect(error).not.to.be.ok;
       expect(data.data).to.equal(expected);
-      console.log(data.map)
       expect(data.map).to.equal(expectedMap);
       done();
     });
@@ -46,7 +45,7 @@ describe('Plugin', function() {
     var content = '<script><div>html content</div></script>';
 
     plugin.optimize(content, 'test.html', function(error, data) {
-      expect(error).to.equal("Ngmin or JS minify failed on test.html: Error: not js file");
+      expect(error).not.to.be.ok;
       expect(data.data).to.equal(content);
       done();
     });
