@@ -17,9 +17,9 @@ describe('Plugin', function() {
     var content = '(function(){angular.module("whatever").controller("MyCtrl", function ($scope, $http) {})})()';
     var expected = '!function(){angular.module("whatever").controller("MyCtrl",["$scope","$http",function(){}])}();';
 
-    plugin.optimize(content, '', function(error, data) {
+    plugin.optimize(content, 'test.js', function(error, data) {
       expect(error).not.to.be.ok;
-      expect(data).to.equal(expected);
+      expect(data.data).to.equal(expected);
       done();
     });
   });
@@ -29,12 +29,25 @@ describe('Plugin', function() {
 
     var content = '(function() {var first = 5; window.second = first;})()';
     var expected = '!function(){var n=5;window.second=n}();';
-    var expectedMap = '{"version":3,"file":".map","sources":["?"],"names":["first","window","second"],"mappings":"CAAC,WACC,GAAIA,GAAQ,CACZC,QAAOC,OAASF"}';
+    var expectedMap = '{"version":3,"file":"test.js.map","sources":["?"],"names":["first","window","second"],"mappings":"CAAC,WACC,GAAIA,GAAQ,CACZC,QAAOC,OAASF"}';
 
-    plugin.optimize(content, '', function(error, data) {
+    plugin.optimize(content, 'test.js', function(error, data) {
       expect(error).not.to.be.ok;
-      expect(data.code).to.equal(expected);
+      expect(data.data).to.equal(expected);
+      console.log(data.map)
       expect(data.map).to.equal(expectedMap);
+      done();
+    });
+  });
+
+  it('should not optimize html', function(done) {
+    plugin = new Plugin({sourceMaps: true});
+
+    var content = '<script><div>html content</div></script>';
+
+    plugin.optimize(content, 'test.html', function(error, data) {
+      expect(error).to.equal("Ngmin or JS minify failed on test.html: Error: not js file");
+      expect(data.data).to.equal(content);
       done();
     });
   });

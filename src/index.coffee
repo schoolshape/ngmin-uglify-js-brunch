@@ -24,14 +24,17 @@ module.exports = class NgminUglifyMinifier
     else
       undefined
     try
+      # TODO dirty hack
+      if path.slice(-2) != "js"
+        throw new Error 'not js file'
       ngmined = ngmin.annotate(data)
       optimized = uglify.minify(ngmined, options)
-    catch err
-      error = "Ngmin or JS minify failed on #{path}: #{err}"
-    finally
       result = if optimized and options.sourceMaps
         data: optimized.code
         map: optimized.map
       else
         data: optimized.code
-      callback error, (result or data)
+      callback undefined, result
+    catch err
+      error = "Ngmin or JS minify failed on #{path}: #{err}"
+      callback error, {data: data}
