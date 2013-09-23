@@ -38,16 +38,4 @@ describe('Plugin', function() {
       done();
     });
   });
-
-  it('should not optimize html', function(done) {
-    plugin = new Plugin({sourceMaps: true});
-
-    var content = '<script><div>html content</div></script>';
-
-    plugin.optimize(content, 'test.html', function(error, data) {
-      expect(error).not.to.be.ok;
-      expect(data.data).to.equal(content);
-      done();
-    });
-  });
 });

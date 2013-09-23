@@ -14,6 +14,7 @@ module.exports = class NgminUglifyMinifier
 
   constructor: (@config) ->
     @options = (clone @config?.plugins?.uglify) or {}
+    @filter = @config?.plugins?.ngmin?.filter
     @options.fromString = yes
     @options.sourceMaps = @config?.sourceMaps
 
@@ -24,8 +25,7 @@ module.exports = class NgminUglifyMinifier
     else
       undefined
     try
-      # TODO dirty hack
-      if path.slice(-2) != "js"
+      if path.search(@filter) == -1
         callback undefined, {data: data}
       else
         ngmined = ngmin.annotate(data)
